@@ -1,0 +1,32 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kho App</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1 id="logo">💡 Kho App</h1>
+    <button id="themeToggle">🌓</button>
+  </header>
+  <main>
+    <div class="app-card" onclick="showAppDetail('Example App', 'Đây là ứng dụng ví dụ.', '1.0', '1000 lượt tải')">
+      <h2>Example App</h2>
+      <p>Nhấn để xem chi tiết</p>
+    </div>
+    <div id="appDetailModal" class="modal">
+      <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <h2 id="appName"></h2>
+        <p id="appDescription"></p>
+        <p><strong>Phiên bản:</strong> <span id="appVersion"></span></p>
+        <p><strong>Lượt tải:</strong> <span id="appDownloads"></span></p>
+      </div>
+    </div>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>
