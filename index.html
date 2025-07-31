@@ -2,47 +2,41 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Kho App</title>
-  <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Kho App</title>
+    <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <header>
-    <div class="logo">
-      <span class="led">💡 Kho App</span>
-    </div>
-    <div class="mode-toggle">
-      <button id="toggleMode">🌙</button>
-    </div>
-  </header>
+    <header>
+        <h1 class="logo"><span class="led">💡</span> Kho App</h1>
+        <button id="themeToggle">🌙</button>
+    </header>
 
-  <main>
-    <div class="search-bar">
-      <input type="text" placeholder="Tìm ứng dụng..." id="searchInput" />
-      <select id="filter">
-        <option>Tất cả</option>
-      </select>
+    <main>
+        <div class="search-bar">
+            <input type="text" placeholder="Tìm ứng dụng..." />
+            <select>
+                <option>Tất cả</option>
+            </select>
+        </div>
+
+        <div class="app-list">
+            <div class="app-card" onclick="showPopup()">
+                <img src="https://via.placeholder.com/150" alt="App">
+                <p>Tên App</p>
+            </div>
+        </div>
+    </main>
+
+    <div class="popup" id="popup">
+        <button class="close-btn" onclick="closePopup()">✖</button>
+        <h2>Tên App</h2>
+        <img src="https://via.placeholder.com/150" alt="App Image">
+        <p>Mô tả chi tiết ứng dụng.</p>
+        <a class="download-btn" href="#">Tải về</a>
     </div>
 
-    <div class="app-list" id="appList">
-      <div class="app-card" onclick="openPopup('Tên App', 'Mô tả chi tiết ứng dụng. iOS 14-17, 12MB, dễ dùng.', 'https://via.placeholder.com/100')">
-        <img src="https://via.placeholder.com/100" alt="App Icon" />
-        <p>Tên App</p>
-      </div>
-    </div>
-  </main>
-
-  <div id="popup" class="popup hidden">
-    <div class="popup-content">
-      <span class="close" onclick="closePopup()">×</span>
-      <h2 id="popupTitle">Tên App</h2>
-      <img id="popupImg" src="" alt="App Icon" />
-      <p id="popupDesc">Mô tả chi tiết</p>
-      <a id="popupDownload" href="#" class="download-btn">Tải về</a>
-    </div>
-  </div>
-
-  <script src="script.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>

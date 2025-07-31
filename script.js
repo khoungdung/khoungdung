@@ -1,16 +1,16 @@
 
-function openPopup(title, desc, img) {
-  document.getElementById("popupTitle").textContent = title;
-  document.getElementById("popupDesc").textContent = desc;
-  document.getElementById("popupImg").src = img;
-  document.getElementById("popupDownload").href = "#";
-  document.getElementById("popup").classList.remove("hidden");
+const toggleBtn = document.getElementById('themeToggle');
+toggleBtn.onclick = () => {
+    document.body.classList.toggle('dark');
+    localStorage.setItem('theme', document.body.classList.contains('dark') ? 'dark' : 'light');
+};
+if (localStorage.getItem('theme') === 'dark') {
+    document.body.classList.add('dark');
 }
 
+function showPopup() {
+    document.getElementById('popup').classList.add('active');
+}
 function closePopup() {
-  document.getElementById("popup").classList.add("hidden");
+    document.getElementById('popup').classList.remove('active');
 }
-
-document.getElementById("toggleMode").addEventListener("click", () => {
-  document.body.classList.toggle("dark");
-});
