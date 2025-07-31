@@ -1,0 +1,50 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rỗ App - Chia sẻ IPA</title>
+  <link rel="stylesheet" href="style.css" />
+  <script defer src="script.js"></script>
+</head>
+<body>
+  <header class="header">
+    <div class="logo">📱 Rỗ App</div>
+    <input type="text" placeholder="Tìm ứng dụng..." class="search-bar" />
+  </header>
+
+  <nav class="category-bar">
+    <button class="category">Tất cả</button>
+    <button class="category">Tiện ích</button>
+    <button class="category">Giải trí</button>
+    <button class="category">Công cụ</button>
+  </nav>
+
+  <main class="app-list">
+    <!-- Ứng dụng mẫu -->
+    <div class="app-card" onclick="openModal('Monet')">
+      <img src="https://is1-ssl.mzstatic.com/image/thumb/Purple112/v4/0a/bf/7a/0abf7ae3-3209-91d3-f002-2f20cdb1ff27/AppIcon-0-1x_U007emarketing-0-7-0-85-220.png/460x0w.webp" alt="Monet" />
+      <div class="app-info">
+        <h3>Monet</h3>
+        <p>Phiên bản: 3.5.6</p>
+      </div>
+    </div>
+  </main>
+
+  <!-- Modal chi tiết ứng dụng -->
+  <div class="modal" id="appModal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal()">&times;</span>
+      <h2 id="modalTitle">Tên ứng dụng</h2>
+      <p id="modalVersion">Phiên bản: --</p>
+      <p id="modalSize">Kích thước: --</p>
+      <div class="modal-buttons">
+        <a href="#" class="btn green">Cài đặt (Appsync)</a>
+        <a href="#" class="btn green">Cài đặt (TrollStore)</a>
+        <a href="#" class="btn blue">Tải IPA</a>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
