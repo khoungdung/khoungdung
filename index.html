@@ -1,40 +1,35 @@
+
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kho App - Chia sẻ ứng dụng IPA</title>
-    <link rel="stylesheet" href="css/style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Rỗ App - Chia sẻ IPA</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header>
-        <div class="logo">
-            <img src="assets/logo.png" alt="Kho App Logo" class="logo-img">
-            <h1>Kho App</h1>
-        </div>
-        <button id="theme-toggle" aria-label="Chuyển đổi chế độ sáng/tối">🌙</button>
-    </header>
-    <main>
-        <div class="search-filter">
-            <input type="text" id="search-input" placeholder="Tìm kiếm ứng dụng...">
-            <select id="category-filter">
-                <option value="all">Tất cả</option>
-                <option value="game">Game</option>
-                <option value="tool">Công cụ</option>
-                <option value="social">Mạng xã hội</option>
-            </select>
-        </div>
-        <div id="app-list" class="app-list"></div>
-    </main>
-    <div id="app-modal" class="modal">
-        <div class="modal-content">
-            <span class="close-btn">&times;</span>
-            <img id="modal-icon" src="" alt="App Icon">
-            <h2 id="modal-title"></h2>
-            <p id="modal-description"></p>
-            <a id="modal-download" href="#" class="download-btn">Tải về</a>
-        </div>
-    </div>
-    <script src="js/main.js"></script>
+  <header>
+    <div class="logo">📱 Rỗ App</div>
+    <div class="slogan">Thế giới IPA trong túi của bạn</div>
+    <input type="text" id="searchInput" placeholder="Tìm kiếm ứng dụng...">
+  </header>
+
+  <div class="filter-bar">
+    <button onclick="filterApps('Tất cả')">Tất cả</button>
+    <button onclick="filterApps('Game')">Game</button>
+    <button onclick="filterApps('Tiện ích')">Tiện ích</button>
+    <button onclick="filterApps('Mạng xã hội')">Mạng xã hội</button>
+    <button onclick="filterApps('Công cụ')">Công cụ</button>
+  </div>
+
+  <main id="appList">
+    <!-- App cards sẽ được load tại đây -->
+  </main>
+
+  <footer>
+    <p>© 2025 Rỗ App. Tải IPA dễ dàng, an toàn.</p>
+  </footer>
+
+  <script src="script.js"></script>
 </body>
 </html>
