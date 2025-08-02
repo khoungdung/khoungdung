@@ -1,92 +1,830 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Kho App - IPA Sharing Platform</title>
-  <link rel="stylesheet" href="style.css">
-  <script defer src="script.js"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+  <title>Kho App - Nền tảng chia sẻ IPA iOS</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"/>
+  <style>
+    :root {
+      --bg-color: #0e0e1a;
+      --text-color: #f0f0f0;
+      --primary-color: #00d4ff;
+      --accent-color: #ff3cac;
+      --card-bg: #1a1a2e;
+      --transition-speed: 0.3s;
+    }
+
+    /* Light Mode Variables */
+    .light-mode {
+      --bg-color: #f5f7ff;
+      --text-color: #333;
+      --card-bg: #ffffff;
+      --primary-color: #0077cc;
+      --accent-color: #e91e63;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg-color);
+      color: var(--text-color);
+      overflow-x: hidden;
+      line-height: 1.6;
+      transition: background-color var(--transition-speed), color var(--transition-speed);
+    }
+
+    /* Header Styles */
+    header {
+      background: linear-gradient(90deg, var(--accent-color), var(--primary-color));
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo h1 {
+      font-size: 1.8rem;
+      margin: 0;
+      color: white;
+      font-weight: 700;
+    }
+
+    .logo i {
+      font-size: 1.5rem;
+    }
+
+    /* Navigation */
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      transition: transform var(--transition-speed);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    nav a:hover {
+      transform: translateY(-2px);
+      text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+    }
+
+    .search-container {
+      position: relative;
+      margin: 0 1rem;
+      flex-grow: 1;
+      max-width: 500px;
+    }
+
+    .search-container input {
+      width: 100%;
+      padding: 0.8rem 1rem 0.8rem 40px;
+      border-radius: 30px;
+      border: none;
+      background: rgba(255, 255, 255, 0.2);
+      color: white;
+      font-size: 1rem;
+      transition: all var(--transition-speed);
+    }
+
+    .light-mode .search-container input {
+      background: rgba(0, 0, 0, 0.05);
+      color: #333;
+    }
+
+    .search-container input:focus {
+      outline: none;
+      background: rgba(255, 255, 255, 0.3);
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+    }
+
+    .search-container i {
+      position: absolute;
+      left: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: white;
+    }
+
+    .light-mode .search-container i {
+      color: #333;
+    }
+
+    /* Toggle Button */
+    .toggle-btn {
+      background: rgba(255, 255, 255, 0.2);
+      border: none;
+      width: 50px;
+      height: 26px;
+      border-radius: 13px;
+      padding: 3px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      transition: background var(--transition-speed);
+    }
+
+    .toggle-btn:hover {
+      background: rgba(255, 255, 255, 0.3);
+    }
+
+    .toggle-btn span {
+      display: block;
+      width: 20px;
+      height: 20px;
+      background: white;
+      border-radius: 50%;
+      transition: transform var(--transition-speed);
+    }
+
+    .light-mode .toggle-btn {
+      justify-content: flex-end;
+    }
+
+    /* Hero Section */
+    .hero {
+      padding: 5rem 2rem;
+      text-align: center;
+      background: linear-gradient(135deg, #1e1e2e 0%, #28293e 100%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .light-mode .hero {
+      background: linear-gradient(135deg, #e0e5ff 0%, #d6dcff 100%);
+    }
+
+    .hero h2 {
+      font-size: 2.8rem;
+      margin-bottom: 1.5rem;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+      font-weight: 700;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      max-width: 700px;
+      margin: 0 auto 2rem;
+      color: rgba(255, 255, 255, 0.9);
+    }
+
+    .light-mode .hero p {
+      color: #555;
+    }
+
+    .cta-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--primary-color);
+      color: white;
+      padding: 0.8rem 2rem;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1.1rem;
+      transition: all var(--transition-speed);
+      box-shadow: 0 4px 15px rgba(0, 212, 255, 0.3);
+    }
+
+    .cta-button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(0, 212, 255, 0.4);
+    }
+
+    /* App Grid */
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+
+    .section-title {
+      font-size: 2rem;
+      margin-bottom: 2rem;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--primary-color);
+    }
+
+    .filters {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .filter-btn {
+      background: var(--card-bg);
+      color: var(--text-color);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 0.5rem 1.2rem;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: all var(--transition-speed);
+      font-size: 0.9rem;
+    }
+
+    .light-mode .filter-btn {
+      border: 1px solid rgba(0, 0, 0, 0.1);
+    }
+
+    .filter-btn:hover, .filter-btn.active {
+      background: var(--primary-color);
+      color: white;
+      border-color: var(--primary-color);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+
+    .app-card {
+      background: var(--card-bg);
+      border-radius: 16px;
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .light-mode .app-card {
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+    }
+
+    .app-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0, 212, 255, 0.2);
+    }
+
+    .app-image {
+      height: 180px;
+      background: linear-gradient(45deg, #ff3cac, #00d4ff);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .app-image i {
+      font-size: 4rem;
+      color: white;
+      opacity: 0.8;
+    }
+
+    .app-content {
+      padding: 1.5rem;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .app-title {
+      font-size: 1.3rem;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+    }
+
+    .app-developer {
+      color: var(--primary-color);
+      font-size: 0.9rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .app-description {
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 0.95rem;
+      margin-bottom: 1.2rem;
+      flex-grow: 1;
+    }
+
+    .light-mode .app-description {
+      color: #666;
+    }
+
+    .app-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: auto;
+    }
+
+    .app-rating {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      color: #ffd700;
+    }
+
+    .app-rating span {
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 0.9rem;
+    }
+
+    .light-mode .app-rating span {
+      color: #666;
+    }
+
+    .download-btn {
+      background: var(--primary-color);
+      color: white;
+      border: none;
+      padding: 0.6rem 1.2rem;
+      border-radius: 20px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: background var(--transition-speed);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .download-btn:hover {
+      background: #00a0c0;
+    }
+
+    /* Upload Section */
+    .upload-section {
+      background: linear-gradient(135deg, #1e1e2e 0%, #2c2c48 100%);
+      padding: 4rem 2rem;
+      text-align: center;
+      margin-top: 4rem;
+    }
+
+    .light-mode .upload-section {
+      background: linear-gradient(135deg, #e0e5ff 0%, #d1d8ff 100%);
+    }
+
+    .upload-container {
+      max-width: 600px;
+      margin: 0 auto;
+      background: rgba(255, 255, 255, 0.05);
+      padding: 2.5rem;
+      border-radius: 20px;
+    }
+
+    .light-mode .upload-container {
+      background: rgba(255, 255, 255, 0.5);
+    }
+
+    .upload-icon {
+      font-size: 3rem;
+      color: var(--primary-color);
+      margin-bottom: 1.5rem;
+    }
+
+    .upload-btn {
+      background: var(--accent-color);
+      color: white;
+      border: none;
+      padding: 0.8rem 2.5rem;
+      border-radius: 30px;
+      cursor: pointer;
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-top: 1.5rem;
+      transition: all var(--transition-speed);
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .upload-btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 5px 20px rgba(255, 60, 172, 0.4);
+    }
+
+    /* Footer */
+    footer {
+      background: #141421;
+      padding: 3rem 2rem 2rem;
+      color: #aaa;
+      font-size: 0.95rem;
+    }
+
+    .light-mode footer {
+      background: #e0e0e0;
+      color: #666;
+    }
+
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+    }
+
+    .footer-column h3 {
+      color: var(--primary-color);
+      margin-bottom: 1.5rem;
+      font-size: 1.2rem;
+    }
+
+    .footer-links {
+      list-style: none;
+    }
+
+    .footer-links li {
+      margin-bottom: 0.8rem;
+    }
+
+    .footer-links a {
+      color: #aaa;
+      text-decoration: none;
+      transition: color var(--transition-speed);
+    }
+
+    .light-mode .footer-links a {
+      color: #666;
+    }
+
+    .footer-links a:hover {
+      color: var(--primary-color);
+    }
+
+    .social-links {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .social-links a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      color: white;
+      transition: all var(--transition-speed);
+    }
+
+    .light-mode .social-links a {
+      background: rgba(0, 0, 0, 0.05);
+      color: #333;
+    }
+
+    .social-links a:hover {
+      background: var(--primary-color);
+      transform: translateY(-3px);
+    }
+
+    .copyright {
+      text-align: center;
+      margin-top: 3rem;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .light-mode .copyright {
+      border-top: 1px solid rgba(0, 0, 0, 0.1);
+    }
+
+    /* Responsive Design */
+    @media (max-width: 900px) {
+      header {
+        flex-wrap: wrap;
+        gap: 1rem;
+      }
+      
+      .search-container {
+        order: 3;
+        max-width: 100%;
+        margin: 0;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .hero {
+        padding: 3rem 1.5rem;
+      }
+      
+      .hero h2 {
+        font-size: 2.2rem;
+      }
+      
+      .section-title {
+        font-size: 1.7rem;
+      }
+      
+      .grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .upload-container {
+        padding: 1.5rem;
+      }
+    }
+
+    /* Animations */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .fade-in {
+      animation: fadeIn 0.6s ease forwards;
+    }
+  </style>
 </head>
 <body>
   <header>
-    <h1>Kho App</h1>
+    <div class="logo">
+      <i class="fas fa-mobile-alt"></i>
+      <h1>Kho App</h1>
+    </div>
+    
+    <div class="search-container">
+      <i class="fas fa-search"></i>
+      <input type="text" placeholder="Tìm kiếm ứng dụng, trò chơi...">
+    </div>
+    
     <nav>
-      <a href="#">Home</a>
-      <a href="#">Categories</a>
-      <a href="#">Top Rated</a>
-      <a href="#">Upload IPA</a>
-      <a href="#">Dark/Light</a>
+      <a href="#"><i class="fas fa-home"></i> Trang chủ</a>
+      <a href="#"><i class="fas fa-th-large"></i> Danh mục</a>
+      <a href="#"><i class="fas fa-crown"></i> Nổi bật</a>
+      <a href="#upload"><i class="fas fa-cloud-upload-alt"></i> Upload</a>
+      <button class="toggle-btn" aria-label="Toggle dark/light mode">
+        <span></span>
+      </button>
     </nav>
   </header>
 
   <section class="hero">
     <h2>Chia sẻ IPA chất lượng, an toàn và nhanh chóng</h2>
     <p>Kho App là nền tảng chia sẻ ứng dụng IPA với thiết kế hiện đại, tối ưu trải nghiệm người dùng và hỗ trợ mạnh mẽ cho iOS.</p>
+    <a href="#apps" class="cta-button">
+      <i class="fas fa-download"></i> Khám phá ngay
+    </a>
   </section>
 
-  <section class="grid">
-    <div class="card">
-      <h3>Tìm kiếm ứng dụng</h3>
-      <input type="text" id="searchInput" placeholder="Nhập tên app..." style="width:100%; padding:0.5rem; margin-top:0.5rem;">
+  <div class="container">
+    <h2 class="section-title">
+      <i class="fas fa-rocket"></i> Ứng dụng nổi bật
+    </h2>
+    
+    <div class="filters">
+      <button class="filter-btn active">Tất cả</button>
+      <button class="filter-btn">Trò chơi</button>
+      <button class="filter-btn">Tiện ích</button>
+      <button class="filter-btn">Giáo dục</button>
+      <button class="filter-btn">Mạng xã hội</button>
+      <button class="filter-btn">Công cụ</button>
     </div>
-
-    <div class="card">
-      <h3>Chế độ Dark/Light</h3>
-      <button class="toggle-btn" style="padding:0.5rem 1rem; margin-top:0.5rem;">Chuyển chế độ</button>
-    </div>
-
-    <div class="card">
-      <h3>Phân loại danh mục</h3>
-      <select id="categorySelect" style="width:100%; padding:0.5rem; margin-top:0.5rem;">
-        <option>Game</option>
-        <option>Tiện ích</option>
-        <option>Giáo dục</option>
-        <option>Học tập</option>
-        <option>Giải trí</option>
-      </select>
-    </div>
-
-    <div class="card">
-      <h3>Đánh giá ứng dụng</h3>
-      <div style="font-size:1.5rem; color:gold;">
-        ★★★★☆
+    
+    <div class="grid">
+      <!-- App Card 1 -->
+      <div class="app-card fade-in">
+        <div class="app-image">
+          <i class="fab fa-spotify"></i>
+        </div>
+        <div class="app-content">
+          <h3 class="app-title">Spotify Premium</h3>
+          <div class="app-developer">Spotify AB</div>
+          <p class="app-description">Nghe nhạc không quảng cáo, tải nhạc để nghe offline và chất lượng âm thanh cao.</p>
+          <div class="app-meta">
+            <div class="app-rating">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star-half-alt"></i>
+              <span>(4.7)</span>
+            </div>
+            <button class="download-btn">
+              <i class="fas fa-download"></i> Tải
+            </button>
+          </div>
+        </div>
+      </div>
+      
+      <!-- App Card 2 -->
+      <div class="app-card fade-in">
+        <div class="app-image">
+          <i class="fas fa-video"></i>
+        </div>
+        <div class="app-content">
+          <h3 class="app-title">YouTube Premium</h3>
+          <div class="app-developer">Google LLC</div>
+          <p class="app-description">Xem video không quảng cáo, phát nền và tải video để xem offline.</p>
+          <div class="app-meta">
+            <div class="app-rating">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <span>(4.9)</span>
+            </div>
+            <button class="download-btn">
+              <i class="fas fa-download"></i> Tải
+            </button>
+          </div>
+        </div>
+      </div>
+      
+      <!-- App Card 3 -->
+      <div class="app-card fade-in">
+        <div class="app-image">
+          <i class="fas fa-gamepad"></i>
+        </div>
+        <div class="app-content">
+          <h3 class="app-title">Minecraft Premium</h3>
+          <div class="app-developer">Mojang</div>
+          <p class="app-description">Trò chơi thế giới mở sáng tạo với chế độ sinh tồn và phiêu lưu đỉnh cao.</p>
+          <div class="app-meta">
+            <div class="app-rating">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="far fa-star"></i>
+              <span>(4.3)</span>
+            </div>
+            <button class="download-btn">
+              <i class="fas fa-download"></i> Tải
+            </button>
+          </div>
+        </div>
+      </div>
+      
+      <!-- App Card 4 -->
+      <div class="app-card fade-in">
+        <div class="app-image">
+          <i class="fas fa-photo-video"></i>
+        </div>
+        <div class="app-content">
+          <h3 class="app-title">Procreate Pocket</h3>
+          <div class="app-developer">Savage Interactive</div>
+          <p class="app-description">Ứng dụng vẽ chuyên nghiệp dành cho iPhone với bộ công cụ đầy đủ.</p>
+          <div class="app-meta">
+            <div class="app-rating">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star-half-alt"></i>
+              <span>(4.6)</span>
+            </div>
+            <button class="download-btn">
+              <i class="fas fa-download"></i> Tải
+            </button>
+          </div>
+        </div>
       </div>
     </div>
+  </div>
 
-    <div class="card">
-      <h3>Tải lên IPA</h3>
-      <input type="file" accept=".ipa" style="margin-top:0.5rem;">
-    </div>
-
-    <div class="card">
-      <h3>Chia sẻ nhanh</h3>
-      <button onclick="copyShare()" style="padding:0.5rem 1rem;">Copy Link</button>
-    </div>
-
-    <div class="card">
-      <h3>App yêu thích</h3>
-      <button onclick="toggleLike(this)" style="padding:0.5rem 1rem;">❤️ Thêm vào mục yêu thích</button>
-    </div>
-
-    <div class="card">
-      <h3>Gửi phản hồi</h3>
-      <textarea placeholder="Viết phản hồi..." style="width:100%; padding:0.5rem;"></textarea>
-    </div>
-
-    <div class="card">
-      <h3>Bình luận</h3>
-      <input type="text" placeholder="Viết bình luận..." style="width:100%; padding:0.5rem;">
-    </div>
-
-    <div class="card">
-      <h3>Thông báo</h3>
-      <div style="margin-top:0.5rem;">🔔 Bạn có 2 thông báo mới</div>
+  <section id="upload" class="upload-section">
+    <div class="upload-container">
+      <div class="upload-icon">
+        <i class="fas fa-cloud-upload-alt"></i>
+      </div>
+      <h2>Chia sẻ ứng dụng của bạn</h2>
+      <p>Upload file IPA của bạn để chia sẻ với cộng đồng người dùng iOS. Chúng tôi hỗ trợ file có kích thước tối đa 2GB.</p>
+      <button class="upload-btn">
+        <i class="fas fa-upload"></i> Upload IPA
+      </button>
     </div>
   </section>
 
   <footer>
-    &copy; 2025 Kho App. All rights reserved.
+    <div class="footer-content">
+      <div class="footer-column">
+        <h3>Về Kho App</h3>
+        <p>Nền tảng chia sẻ ứng dụng IPA miễn phí, chất lượng cao cho cộng đồng người dùng iOS.</p>
+        <div class="social-links">
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-telegram"></i></a>
+          <a href="#"><i class="fab fa-discord"></i></a>
+        </div>
+      </div>
+      
+      <div class="footer-column">
+        <h3>Danh mục</h3>
+        <ul class="footer-links">
+          <li><a href="#">Trò chơi</a></li>
+          <li><a href="#">Tiện ích</a></li>
+          <li><a href="#">Giáo dục</a></li>
+          <li><a href="#">Mạng xã hội</a></li>
+          <li><a href="#">Công cụ làm việc</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-column">
+        <h3>Hỗ trợ</h3>
+        <ul class="footer-links">
+          <li><a href="#">Hướng dẫn sử dụng</a></li>
+          <li><a href="#">Cài đặt IPA</a></li>
+          <li><a href="#">Câu hỏi thường gặp</a></li>
+          <li><a href="#">Liên hệ hỗ trợ</a></li>
+          <li><a href="#">Điều khoản sử dụng</a></li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="copyright">
+      &copy; 2025 Kho App. All rights reserved.
+    </div>
   </footer>
+
+  <script>
+    // Dark/Light Mode Toggle
+    const toggleTheme = () => {
+      document.body.classList.toggle('light-mode');
+      const isLightMode = document.body.classList.contains('light-mode');
+      localStorage.setItem('lightMode', isLightMode);
+    };
+    
+    // Initialize theme
+    const initTheme = () => {
+      const savedTheme = localStorage.getItem('lightMode');
+      const prefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
+      
+      // Use saved theme if exists, otherwise use system preference
+      if (savedTheme === 'true' || (!savedTheme && prefersLight)) {
+        document.body.classList.add('light-mode');
+      }
+    };
+    
+    // Setup event listeners
+    document.querySelector('.toggle-btn').addEventListener('click', toggleTheme);
+    document.addEventListener('DOMContentLoaded', initTheme);
+    
+    // Filter buttons functionality
+    document.querySelectorAll('.filter-btn').forEach(button => {
+      button.addEventListener('click', function() {
+        // Remove active class from all buttons
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+          btn.classList.remove('active');
+        });
+        
+        // Add active class to clicked button
+        this.classList.add('active');
+        
+        // Filter functionality would go here
+        console.log('Filter by:', this.textContent);
+      });
+    });
+    
+    // Download buttons functionality
+    document.querySelectorAll('.download-btn').forEach(button => {
+      button.addEventListener('click', function() {
+        const appCard = this.closest('.app-card');
+        const appName = appCard.querySelector('.app-title').textContent;
+        
+        // Show download confirmation
+        alert(`Bắt đầu tải xuống: ${appName}`);
+        
+        // Simulate download progress
+        const originalText = this.innerHTML;
+        this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Đang tải...';
+        this.disabled = true;
+        
+        setTimeout(() => {
+          this.innerHTML = originalText;
+          this.disabled = false;
+          alert(`Tải xuống ${appName} thành công!`);
+        }, 2000);
+      });
+    });
+    
+    // Upload button functionality
+    document.querySelector('.upload-btn').addEventListener('click', function() {
+      alert('Mở trình đơn upload IPA...');
+      // In a real implementation, this would open a file upload dialog
+    });
+  </script>
 </body>
 </html>
