@@ -497,6 +497,167 @@
       box-shadow: 0 5px 20px rgba(255, 60, 172, 0.4);
     }
 
+    /* Hướng dẫn cài đặt và dịch vụ chứng chỉ */
+    .guide-section {
+      background: linear-gradient(135deg, #1a1a2e 0%, #2c2c48 100%);
+      padding: 4rem 1.5rem;
+      margin-top: 3rem;
+    }
+    
+    .light-mode .guide-section {
+      background: linear-gradient(135deg, #e0e5ff 0%, #d1d8ff 100%);
+    }
+    
+    .guide-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2.5rem;
+    }
+    
+    @media (max-width: 900px) {
+      .guide-container {
+        grid-template-columns: 1fr;
+      }
+    }
+    
+    .guide-box {
+      background: var(--card-bg);
+      border-radius: 20px;
+      padding: 2rem;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    }
+    
+    .light-mode .guide-box {
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    }
+    
+    .guide-title {
+      font-size: 1.8rem;
+      margin-bottom: 1.5rem;
+      color: var(--primary-color);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    
+    .guide-steps {
+      counter-reset: step-counter;
+    }
+    
+    .step {
+      position: relative;
+      padding-left: 3rem;
+      margin-bottom: 1.8rem;
+    }
+    
+    .step:before {
+      counter-increment: step-counter;
+      content: counter(step-counter);
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 2rem;
+      height: 2rem;
+      background: var(--accent-color);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+    }
+    
+    .step h4 {
+      margin-bottom: 0.5rem;
+      font-size: 1.1rem;
+    }
+    
+    .certificate-box {
+      text-align: center;
+    }
+    
+    .certificate-badge {
+      display: inline-block;
+      background: linear-gradient(45deg, #ff3cac, #00d4ff);
+      color: white;
+      padding: 0.5rem 1.5rem;
+      border-radius: 30px;
+      font-weight: bold;
+      margin-bottom: 1.5rem;
+      font-size: 1.1rem;
+    }
+    
+    .certificate-features {
+      list-style: none;
+      margin: 2rem 0;
+      text-align: left;
+    }
+    
+    .certificate-features li {
+      padding: 0.8rem 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    
+    .light-mode .certificate-features li {
+      border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    }
+    
+    .certificate-features li:last-child {
+      border-bottom: none;
+    }
+    
+    .certificate-price {
+      font-size: 2.5rem;
+      font-weight: bold;
+      color: var(--primary-color);
+      margin: 1.5rem 0;
+    }
+    
+    .certificate-price span {
+      font-size: 1rem;
+      color: var(--text-color);
+      font-weight: normal;
+    }
+    
+    .light-mode .certificate-price span {
+      color: #333;
+    }
+    
+    .contact-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: #1877f2;
+      color: white;
+      text-decoration: none;
+      padding: 1rem 2rem;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 1.1rem;
+      transition: all 0.3s ease;
+      margin-top: 1rem;
+    }
+    
+    .contact-button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(24, 119, 242, 0.4);
+    }
+    
+    .contact-note {
+      margin-top: 1.5rem;
+      font-size: 0.9rem;
+      color: rgba(255, 255, 255, 0.7);
+    }
+    
+    .light-mode .contact-note {
+      color: #666;
+    }
+
     footer {
       background: #141421;
       padding: 2.5rem 1.5rem 1.5rem;
@@ -641,6 +802,10 @@
         padding: 1.5rem;
       }
       
+      .guide-box {
+        padding: 1.5rem;
+      }
+      
       .logo h1 {
         font-size: 1.5rem;
       }
@@ -756,13 +921,76 @@
     </div>
   </section>
 
+  <!-- Hướng dẫn cài đặt và dịch vụ chứng chỉ -->
+  <section class="guide-section">
+    <div class="guide-container">
+      <div class="guide-box">
+        <h2 class="guide-title"><i class="fas fa-book"></i> Hướng dẫn cài đặt IPA</h2>
+        
+        <div class="guide-steps">
+          <div class="step">
+            <h4>Chuẩn bị chứng chỉ</h4>
+            <p>Để cài đặt IPA trên iOS, bạn cần có chứng chỉ (certificate) hợp lệ. Chứng chỉ giúp xác thực ứng dụng với hệ thống iOS.</p>
+          </div>
+          
+          <div class="step">
+            <h4>Tải file IPA</h4>
+            <p>Tải file IPA từ Kho App về thiết bị của bạn. Lưu ý chỉ tải file từ nguồn đáng tin cậy để đảm bảo an toàn.</p>
+          </div>
+          
+          <div class="step">
+            <h4>Cài đặt chứng chỉ</h4>
+            <p>Truy cập Settings &gt; General &gt; VPN & Device Management. Chọn "Trust" cho chứng chỉ bạn đã cài đặt.</p>
+          </div>
+          
+          <div class="step">
+            <h4>Cài đặt ứng dụng</h4>
+            <p>Mở file IPA bằng trình cài đặt (như AltStore, Sideloadly) và làm theo hướng dẫn để cài đặt ứng dụng.</p>
+          </div>
+          
+          <div class="step">
+            <h4>Tin cậy nhà phát triển</h4>
+            <p>Sau khi cài đặt, vào Settings &gt; General &gt; Device Management và tin cậy nhà phát triển ứng dụng.</p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="guide-box certificate-box">
+        <h2 class="guide-title"><i class="fas fa-shield-alt"></i> Dịch vụ chứng chỉ</h2>
+        
+        <div class="certificate-badge">Bảo hành 365 ngày</div>
+        
+        <ul class="certificate-features">
+          <li><i class="fas fa-check-circle"></i> Chứng chỉ hợp lệ 1 năm</li>
+          <li><i class="fas fa-check-circle"></i> Cài đặt không giới hạn ứng dụng</li>
+          <li><i class="fas fa-check-circle"></i> Hỗ trợ iOS 14 - iOS 17 mới nhất</li>
+          <li><i class="fas fa-check-circle"></i> Không cần jailbreak thiết bị</li>
+          <li><i class="fas fa-check-circle"></i> Hỗ trợ kỹ thuật 24/7</li>
+          <li><i class="fas fa-check-circle"></i> Bảo hành 365 ngày - Thay mới nếu lỗi</li>
+        </ul>
+        
+        <div class="certificate-price">
+          199.000đ <span>VNĐ / 1 năm</span>
+        </div>
+        
+        <a href="https://m.facebook.com/tran.nguyen.minh.qui/" class="contact-button" target="_blank">
+          <i class="fab fa-facebook-messenger"></i> Liên hệ qua Facebook
+        </a>
+        
+        <p class="contact-note">
+          <i class="fas fa-info-circle"></i> Nhắn tin trực tiếp qua Facebook để được hỗ trợ nhanh nhất. Chúng tôi sẽ phản hồi trong vòng 15 phút.
+        </p>
+      </div>
+    </div>
+  </section>
+
   <footer>
     <div class="footer-content">
       <div class="footer-column">
         <h3>Về Kho App</h3>
         <p>Nền tảng chia sẻ ứng dụng IPA miễn phí, chất lượng cao cho cộng đồng người dùng iOS.</p>
         <div class="social-links">
-          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="https://m.facebook.com/tran.nguyen.minh.qui/" target="_blank"><i class="fab fa-facebook-f"></i></a>
           <a href="#"><i class="fab fa-twitter"></i></a>
           <a href="#"><i class="fab fa-telegram"></i></a>
           <a href="#"><i class="fab fa-discord"></i></a>
@@ -784,7 +1012,7 @@
         <h3>Hỗ trợ</h3>
         <ul class="footer-links">
           <li><a href="#">Hướng dẫn sử dụng</a></li>
-          <li><a href="#">Cài đặt IPA</a></li>
+          <li><a href="#">Cài đặt chứng chỉ</a></li>
           <li><a href="#">Câu hỏi thường gặp</a></li>
           <li><a href="#">Liên hệ hỗ trợ</a></li>
           <li><a href="#">Điều khoản sử dụng</a></li>
@@ -854,7 +1082,7 @@
         description: "Xem video không quảng cáo, phát nền và tải video để xem offline.",
         rating: 4.9,
         category: "Tiện ích",
-        downloadUrl: "https://transfer.it/t/52AdiYlDiT7B",
+        downloadUrl: "https://example.com/download/youtube.ipa",
         version: "18.32.4",
         updated: "2025-06-10"
       },
@@ -869,42 +1097,6 @@
         downloadUrl: "https://example.com/download/minecraft.ipa",
         version: "1.20.1",
         updated: "2025-05-28"
-      },
-      {
-        id: 4,
-        name: "Procreate Pocket",
-        developer: "Savage Interactive",
-        image: "https://images.unsplash.com/photo-1542751110-97427bbecf20?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
-        description: "Ứng dụng vẽ chuyên nghiệp dành cho iPhone với bộ công cụ đầy đủ.",
-        rating: 4.6,
-        category: "Công cụ",
-        downloadUrl: "https://example.com/download/procreate.ipa",
-        version: "5.3.2",
-        updated: "2025-04-22"
-      },
-      {
-        id: 5,
-        name: "Notion Pro",
-        developer: "Notion Labs",
-        image: "https://images.unsplash.com/photo-1558655146-d09347e92766?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
-        description: "Công cụ quản lý công việc và ghi chú toàn diện cho cá nhân và nhóm.",
-        rating: 4.8,
-        category: "Công cụ",
-        downloadUrl: "https://example.com/download/notion.ipa",
-        version: "3.2.0",
-        updated: "2025-06-05"
-      },
-      {
-        id: 6,
-        name: "Duolingo Plus",
-        developer: "Duolingo Inc",
-        image: "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
-        description: "Học ngôn ngữ miễn phí với các bài học vui nhộn và không quảng cáo.",
-        rating: 4.5,
-        category: "Giáo dục",
-        downloadUrl: "https://example.com/download/duolingo.ipa",
-        version: "7.54.0",
-        updated: "2025-05-18"
       }
     ];
     
