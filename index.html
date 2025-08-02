@@ -1,122 +1,12 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Kho App - IPA Sharing Platform</title>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap"/>
   <link rel="stylesheet" href="style.css">
   <script defer src="script.js"></script>
-  <style>
-    :root {
-      --bg-color: #0e0e1a;
-      --text-color: #f0f0f0;
-      --primary-color: #00d4ff;
-      --accent-color: #ff3cac;
-      --transition-speed: 0.3s;
-    }
-
-    body {
-      margin: 0;
-      font-family: 'Inter', sans-serif;
-      background: var(--bg-color);
-      color: var(--text-color);
-      overflow-x: hidden;
-    }
-
-    header {
-      background: linear-gradient(90deg, var(--accent-color), var(--primary-color));
-      padding: 1.2rem 2rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      animation: slideDown 1s ease forwards;
-    }
-
-    header h1 {
-      font-size: 2rem;
-      margin: 0;
-      color: white;
-    }
-
-    nav a {
-      color: white;
-      margin: 0 1rem;
-      text-decoration: none;
-      font-weight: 600;
-      transition: color var(--transition-speed);
-    }
-
-    nav a:hover {
-      color: #111;
-    }
-
-    .hero {
-      padding: 4rem 2rem;
-      text-align: center;
-      background-image: linear-gradient(120deg, #1e1e2e 0%, #28293e 100%);
-      animation: fadeIn 2s ease;
-    }
-
-    .hero h2 {
-      font-size: 3rem;
-      margin-bottom: 1rem;
-    }
-
-    .hero p {
-      font-size: 1.2rem;
-      max-width: 600px;
-      margin: 0 auto;
-    }
-
-    @keyframes slideDown {
-      from { transform: translateY(-100%); opacity: 0; }
-      to { transform: translateY(0); opacity: 1; }
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 2rem;
-      padding: 3rem 2rem;
-    }
-
-    .card {
-      background: #1a1a2e;
-      padding: 1.5rem;
-      border-radius: 12px;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      box-shadow: 0 10px 30px rgba(0, 212, 255, 0.1);
-    }
-
-    .card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 15px 40px rgba(0, 212, 255, 0.2);
-    }
-
-    .card h3 {
-      margin-top: 0;
-      color: var(--primary-color);
-    }
-
-    .card p {
-      color: #ccc;
-    }
-
-    footer {
-      background: #141421;
-      text-align: center;
-      padding: 2rem;
-      color: #888;
-      font-size: 0.9rem;
-    }
-  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
   <header>
@@ -137,30 +27,62 @@
 
   <section class="grid">
     <div class="card">
-      <h3>Tìm kiếm thông minh</h3>
-      <p>Tìm kiếm theo tên, thể loại, nhà phát triển hoặc mức độ phổ biến.</p>
+      <h3>Tìm kiếm ứng dụng</h3>
+      <input type="text" id="searchInput" placeholder="Nhập tên app..." style="width:100%; padding:0.5rem; margin-top:0.5rem;">
     </div>
+
     <div class="card">
-      <h3>Phân loại app</h3>
-      <p>Dễ dàng duyệt qua các ứng dụng theo danh mục: Game, Tiện ích, Giáo dục,...</p>
+      <h3>Chế độ Dark/Light</h3>
+      <button class="toggle-btn" style="padding:0.5rem 1rem; margin-top:0.5rem;">Chuyển chế độ</button>
     </div>
+
     <div class="card">
-      <h3>Đánh giá & bình luận</h3>
-      <p>Xem và đăng nhận xét, đánh giá sao cho từng app chia sẻ.</p>
+      <h3>Phân loại danh mục</h3>
+      <select id="categorySelect" style="width:100%; padding:0.5rem; margin-top:0.5rem;">
+        <option>Game</option>
+        <option>Tiện ích</option>
+        <option>Giáo dục</option>
+        <option>Học tập</option>
+        <option>Giải trí</option>
+      </select>
     </div>
+
     <div class="card">
-      <h3>Chế độ tối/sáng</h3>
-      <p>Tự động thay đổi giao diện để bảo vệ mắt người dùng và tăng thẩm mỹ.</p>
+      <h3>Đánh giá ứng dụng</h3>
+      <div style="font-size:1.5rem; color:gold;">
+        ★★★★☆
+      </div>
     </div>
+
     <div class="card">
-      <h3>Hiệu ứng UI mượt mà</h3>
-      <p>Áp dụng animation hiện đại, responsive tương thích mọi thiết bị.</p>
+      <h3>Tải lên IPA</h3>
+      <input type="file" accept=".ipa" style="margin-top:0.5rem;">
     </div>
+
     <div class="card">
-      <h3>Upload file dễ dàng</h3>
-      <p>Cho phép người dùng đăng tải IPA trực tiếp lên nền tảng.</p>
+      <h3>Chia sẻ nhanh</h3>
+      <button onclick="copyShare()" style="padding:0.5rem 1rem;">Copy Link</button>
     </div>
-    <!-- Tiếp tục thêm tính năng đến khi đủ 50+ -->
+
+    <div class="card">
+      <h3>App yêu thích</h3>
+      <button onclick="toggleLike(this)" style="padding:0.5rem 1rem;">❤️ Thêm vào mục yêu thích</button>
+    </div>
+
+    <div class="card">
+      <h3>Gửi phản hồi</h3>
+      <textarea placeholder="Viết phản hồi..." style="width:100%; padding:0.5rem;"></textarea>
+    </div>
+
+    <div class="card">
+      <h3>Bình luận</h3>
+      <input type="text" placeholder="Viết bình luận..." style="width:100%; padding:0.5rem;">
+    </div>
+
+    <div class="card">
+      <h3>Thông báo</h3>
+      <div style="margin-top:0.5rem;">🔔 Bạn có 2 thông báo mới</div>
+    </div>
   </section>
 
   <footer>
