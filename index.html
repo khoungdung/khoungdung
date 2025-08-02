@@ -1,11 +1,15 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <title>Kho App - Nền tảng chia sẻ IPA iOS</title>
+  <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📱</text></svg>">
+  <link rel="manifest" href="data:application/json;base64,eyJuYW1lIjoiS2hvIEFwcCIsInNob3J0X25hbWUiOiJLaG9BcHAiLCJzdGFydF91cmwiOiIvIiwiaWNvbnMiOlt7InNyYyI6ImRhdGE6aW1hZ2Uvc3ZnK3htbDtiYXNlNjQsUEhOMlp5QjRiV3h1Y3owaWFIUjBjRG92TDNkM2R5NTNNeTV2Y21jdk1qQXdNQzl6ZG1jaUlIZHBaSFJvUFNJeElpQm9aV2xuYUhROUlqQWlJSEJ2YVcxbGN5MXBaR1Z1ZEM5d1lXTnJkSFZ5WlQwaWFIUjBjRG92TDNkM2R5NXBiaTl6ZG1jaVBqeGpiMjVtYVdkemRHOXlJSE4wZVd4bFBTSm9kSFJ3T2k4dmQzZDNMbmN6TG05eVp5OHlNREF3TDNOMlp5SStQSE4wY205clpUb2dNQ0F3SURFZ01qYzJNQ0lnYzNSeVpYUmphRDB4TlNJZ1kyeGhjM005SW1oMGRIQTZMeTkzZDNjdWR6TXViM0puTHpJd01EQXZjM1puSWo0OGNHRjBhQ0JtYVd4c1BTSjFjbXdvSTJ4cGJtVmhja2R5WVdScFpXNTBORE0wSWlCamJHRnpjejBpYzNSeWFXNW5JaTgrUEhOMGIzQWdjM1I1YkdVOUluTjBZWFJsSWlCbWFXeHNQU0oxY213b0kyeHBibVZoY2tkeVlXUnBaVzUwTkRNMElpOCtQSE4wYjNBZ2MzUjViR1U5SW5OMFlYUmxJaUJtYVd4c1BTSjFjbXdvSTJ4cGJtVmhja2R5WVdScFpXNTBORE0wSWk4K1BDOXpkbWMrIn1dfQ==">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"/>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap">
   <style>
     :root {
       --bg-color: #0e0e1a;
@@ -14,6 +18,8 @@
       --accent-color: #ff3cac;
       --card-bg: #1a1a2e;
       --transition-speed: 0.3s;
+      --safe-area-top: env(safe-area-inset-top, 0px);
+      --safe-area-bottom: env(safe-area-inset-bottom, 0px);
     }
 
     /* Light Mode Variables */
@@ -29,21 +35,30 @@
       box-sizing: border-box;
       margin: 0;
       padding: 0;
+      -webkit-tap-highlight-color: transparent;
     }
 
     body {
-      font-family: 'Inter', sans-serif;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
       background: var(--bg-color);
       color: var(--text-color);
       overflow-x: hidden;
       line-height: 1.6;
       transition: background-color var(--transition-speed), color var(--transition-speed);
+      padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+    }
+
+    /* Safari specific fixes */
+    @supports (-webkit-touch-callout: none) {
+      body {
+        min-height: -webkit-fill-available;
+      }
     }
 
     /* Header Styles */
     header {
       background: linear-gradient(90deg, var(--accent-color), var(--primary-color));
-      padding: 1rem 2rem;
+      padding: calc(1rem + var(--safe-area-top)) 1.5rem 1rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -74,7 +89,7 @@
     nav {
       display: flex;
       align-items: center;
-      gap: 1.5rem;
+      gap: 1rem;
     }
 
     nav a {
@@ -85,6 +100,8 @@
       display: flex;
       align-items: center;
       gap: 6px;
+      padding: 0.5rem;
+      font-size: 0.9rem;
     }
 
     nav a:hover {
@@ -94,7 +111,7 @@
 
     .search-container {
       position: relative;
-      margin: 0 1rem;
+      margin: 0 0.5rem;
       flex-grow: 1;
       max-width: 500px;
     }
@@ -108,6 +125,8 @@
       color: white;
       font-size: 1rem;
       transition: all var(--transition-speed);
+      -webkit-appearance: none;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     }
 
     .light-mode .search-container input {
@@ -145,6 +164,7 @@
       display: flex;
       align-items: center;
       transition: background var(--transition-speed);
+      -webkit-tap-highlight-color: transparent;
     }
 
     .toggle-btn:hover {
@@ -166,7 +186,7 @@
 
     /* Hero Section */
     .hero {
-      padding: 5rem 2rem;
+      padding: 3rem 1.5rem;
       text-align: center;
       background: linear-gradient(135deg, #1e1e2e 0%, #28293e 100%);
       position: relative;
@@ -178,16 +198,17 @@
     }
 
     .hero h2 {
-      font-size: 2.8rem;
+      font-size: 2.2rem;
       margin-bottom: 1.5rem;
       max-width: 800px;
       margin-left: auto;
       margin-right: auto;
       font-weight: 700;
+      line-height: 1.3;
     }
 
     .hero p {
-      font-size: 1.2rem;
+      font-size: 1.1rem;
       max-width: 700px;
       margin: 0 auto 2rem;
       color: rgba(255, 255, 255, 0.9);
@@ -203,13 +224,14 @@
       gap: 8px;
       background: var(--primary-color);
       color: white;
-      padding: 0.8rem 2rem;
+      padding: 0.8rem 1.8rem;
       border-radius: 30px;
       text-decoration: none;
       font-weight: 600;
-      font-size: 1.1rem;
+      font-size: 1rem;
       transition: all var(--transition-speed);
       box-shadow: 0 4px 15px rgba(0, 212, 255, 0.3);
+      -webkit-tap-highlight-color: transparent;
     }
 
     .cta-button:hover {
@@ -221,12 +243,12 @@
     .container {
       max-width: 1400px;
       margin: 0 auto;
-      padding: 2rem;
+      padding: 1.5rem;
     }
 
     .section-title {
-      font-size: 2rem;
-      margin-bottom: 2rem;
+      font-size: 1.8rem;
+      margin-bottom: 1.5rem;
       display: flex;
       align-items: center;
       gap: 12px;
@@ -235,9 +257,16 @@
 
     .filters {
       display: flex;
-      gap: 1rem;
-      margin-bottom: 2rem;
+      gap: 0.8rem;
+      margin-bottom: 1.5rem;
       flex-wrap: wrap;
+      overflow-x: auto;
+      padding-bottom: 0.5rem;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .filters::-webkit-scrollbar {
+      display: none;
     }
 
     .filter-btn {
@@ -249,6 +278,9 @@
       cursor: pointer;
       transition: all var(--transition-speed);
       font-size: 0.9rem;
+      white-space: nowrap;
+      flex-shrink: 0;
+      -webkit-tap-highlight-color: transparent;
     }
 
     .light-mode .filter-btn {
@@ -263,8 +295,8 @@
 
     .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 2rem;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1.5rem;
     }
 
     .app-card {
@@ -282,12 +314,12 @@
     }
 
     .app-card:hover {
-      transform: translateY(-10px);
+      transform: translateY(-8px);
       box-shadow: 0 15px 30px rgba(0, 212, 255, 0.2);
     }
 
     .app-image {
-      height: 180px;
+      height: 160px;
       background: linear-gradient(45deg, #ff3cac, #00d4ff);
       display: flex;
       align-items: center;
@@ -295,35 +327,36 @@
     }
 
     .app-image i {
-      font-size: 4rem;
+      font-size: 3.5rem;
       color: white;
       opacity: 0.8;
     }
 
     .app-content {
-      padding: 1.5rem;
+      padding: 1.2rem;
       flex-grow: 1;
       display: flex;
       flex-direction: column;
     }
 
     .app-title {
-      font-size: 1.3rem;
-      margin-bottom: 0.5rem;
+      font-size: 1.2rem;
+      margin-bottom: 0.4rem;
       font-weight: 600;
     }
 
     .app-developer {
       color: var(--primary-color);
-      font-size: 0.9rem;
-      margin-bottom: 0.8rem;
+      font-size: 0.85rem;
+      margin-bottom: 0.6rem;
     }
 
     .app-description {
       color: rgba(255, 255, 255, 0.7);
-      font-size: 0.95rem;
-      margin-bottom: 1.2rem;
+      font-size: 0.9rem;
+      margin-bottom: 1rem;
       flex-grow: 1;
+      line-height: 1.5;
     }
 
     .light-mode .app-description {
@@ -346,7 +379,7 @@
 
     .app-rating span {
       color: rgba(255, 255, 255, 0.7);
-      font-size: 0.9rem;
+      font-size: 0.85rem;
     }
 
     .light-mode .app-rating span {
@@ -357,14 +390,16 @@
       background: var(--primary-color);
       color: white;
       border: none;
-      padding: 0.6rem 1.2rem;
+      padding: 0.5rem 1rem;
       border-radius: 20px;
       cursor: pointer;
       font-weight: 600;
       transition: background var(--transition-speed);
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 6px;
+      font-size: 0.9rem;
+      -webkit-tap-highlight-color: transparent;
     }
 
     .download-btn:hover {
@@ -374,9 +409,9 @@
     /* Upload Section */
     .upload-section {
       background: linear-gradient(135deg, #1e1e2e 0%, #2c2c48 100%);
-      padding: 4rem 2rem;
+      padding: 3rem 1.5rem;
       text-align: center;
-      margin-top: 4rem;
+      margin-top: 2rem;
     }
 
     .light-mode .upload-section {
@@ -387,7 +422,7 @@
       max-width: 600px;
       margin: 0 auto;
       background: rgba(255, 255, 255, 0.05);
-      padding: 2.5rem;
+      padding: 2rem;
       border-radius: 20px;
     }
 
@@ -396,25 +431,26 @@
     }
 
     .upload-icon {
-      font-size: 3rem;
+      font-size: 2.5rem;
       color: var(--primary-color);
-      margin-bottom: 1.5rem;
+      margin-bottom: 1.2rem;
     }
 
     .upload-btn {
       background: var(--accent-color);
       color: white;
       border: none;
-      padding: 0.8rem 2.5rem;
+      padding: 0.8rem 2rem;
       border-radius: 30px;
       cursor: pointer;
-      font-size: 1.1rem;
+      font-size: 1rem;
       font-weight: 600;
-      margin-top: 1.5rem;
+      margin-top: 1.2rem;
       transition: all var(--transition-speed);
       display: inline-flex;
       align-items: center;
-      gap: 10px;
+      gap: 8px;
+      -webkit-tap-highlight-color: transparent;
     }
 
     .upload-btn:hover {
@@ -425,9 +461,9 @@
     /* Footer */
     footer {
       background: #141421;
-      padding: 3rem 2rem 2rem;
+      padding: 2.5rem 1.5rem 1.5rem;
       color: #aaa;
-      font-size: 0.95rem;
+      font-size: 0.9rem;
     }
 
     .light-mode footer {
@@ -439,14 +475,14 @@
       max-width: 1200px;
       margin: 0 auto;
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 2rem;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.8rem;
     }
 
     .footer-column h3 {
       color: var(--primary-color);
-      margin-bottom: 1.5rem;
-      font-size: 1.2rem;
+      margin-bottom: 1.2rem;
+      font-size: 1.1rem;
     }
 
     .footer-links {
@@ -454,13 +490,14 @@
     }
 
     .footer-links li {
-      margin-bottom: 0.8rem;
+      margin-bottom: 0.6rem;
     }
 
     .footer-links a {
       color: #aaa;
       text-decoration: none;
       transition: color var(--transition-speed);
+      font-size: 0.9rem;
     }
 
     .light-mode .footer-links a {
@@ -473,16 +510,16 @@
 
     .social-links {
       display: flex;
-      gap: 1rem;
-      margin-top: 1rem;
+      gap: 0.8rem;
+      margin-top: 0.8rem;
     }
 
     .social-links a {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      width: 40px;
-      height: 40px;
+      width: 36px;
+      height: 36px;
       background: rgba(255, 255, 255, 0.1);
       border-radius: 50%;
       color: white;
@@ -501,40 +538,63 @@
 
     .copyright {
       text-align: center;
-      margin-top: 3rem;
-      padding-top: 2rem;
+      margin-top: 2rem;
+      padding-top: 1.5rem;
       border-top: 1px solid rgba(255, 255, 255, 0.1);
+      font-size: 0.85rem;
+      padding-bottom: calc(0.5rem + var(--safe-area-bottom));
     }
 
     .light-mode .copyright {
       border-top: 1px solid rgba(0, 0, 0, 0.1);
     }
 
+    /* iOS Safari specific styles */
+    @supports (-webkit-overflow-scrolling: touch) {
+      .app-card, .download-btn, .upload-btn, .cta-button {
+        transform: translateZ(0);
+      }
+      
+      header {
+        position: -webkit-sticky;
+      }
+    }
+
     /* Responsive Design */
     @media (max-width: 900px) {
       header {
         flex-wrap: wrap;
-        gap: 1rem;
+        gap: 0.8rem;
+        padding-top: calc(0.8rem + var(--safe-area-top));
       }
       
       .search-container {
         order: 3;
         max-width: 100%;
         margin: 0;
+        min-width: 100%;
+      }
+      
+      nav {
+        gap: 0.5rem;
+      }
+      
+      nav a span {
+        display: none;
       }
     }
 
     @media (max-width: 600px) {
       .hero {
-        padding: 3rem 1.5rem;
+        padding: 2rem 1rem;
       }
       
       .hero h2 {
-        font-size: 2.2rem;
+        font-size: 1.8rem;
       }
       
       .section-title {
-        font-size: 1.7rem;
+        font-size: 1.5rem;
       }
       
       .grid {
@@ -543,6 +603,10 @@
       
       .upload-container {
         padding: 1.5rem;
+      }
+      
+      .logo h1 {
+        font-size: 1.5rem;
       }
     }
 
@@ -555,6 +619,25 @@
     .fade-in {
       animation: fadeIn 0.6s ease forwards;
     }
+    
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+    
+    .pulse {
+      animation: pulse 2s infinite;
+    }
+    
+    /* Download progress */
+    .progress-bar {
+      height: 4px;
+      background: var(--primary-color);
+      width: 0;
+      border-radius: 2px;
+      transition: width 0.5s ease;
+    }
   </style>
 </head>
 <body>
@@ -566,14 +649,14 @@
     
     <div class="search-container">
       <i class="fas fa-search"></i>
-      <input type="text" placeholder="Tìm kiếm ứng dụng, trò chơi...">
+      <input type="text" id="search-input" placeholder="Tìm kiếm ứng dụng, trò chơi...">
     </div>
     
     <nav>
-      <a href="#"><i class="fas fa-home"></i> Trang chủ</a>
-      <a href="#"><i class="fas fa-th-large"></i> Danh mục</a>
-      <a href="#"><i class="fas fa-crown"></i> Nổi bật</a>
-      <a href="#upload"><i class="fas fa-cloud-upload-alt"></i> Upload</a>
+      <a href="#"><i class="fas fa-home"></i> <span>Trang chủ</span></a>
+      <a href="#"><i class="fas fa-th-large"></i> <span>Danh mục</span></a>
+      <a href="#"><i class="fas fa-crown"></i> <span>Nổi bật</span></a>
+      <a href="#upload"><i class="fas fa-cloud-upload-alt"></i> <span>Upload</span></a>
       <button class="toggle-btn" aria-label="Toggle dark/light mode">
         <span></span>
       </button>
@@ -583,7 +666,7 @@
   <section class="hero">
     <h2>Chia sẻ IPA chất lượng, an toàn và nhanh chóng</h2>
     <p>Kho App là nền tảng chia sẻ ứng dụng IPA với thiết kế hiện đại, tối ưu trải nghiệm người dùng và hỗ trợ mạnh mẽ cho iOS.</p>
-    <a href="#apps" class="cta-button">
+    <a href="#apps" class="cta-button pulse">
       <i class="fas fa-download"></i> Khám phá ngay
     </a>
   </section>
@@ -602,106 +685,8 @@
       <button class="filter-btn">Công cụ</button>
     </div>
     
-    <div class="grid">
-      <!-- App Card 1 -->
-      <div class="app-card fade-in">
-        <div class="app-image">
-          <i class="fab fa-spotify"></i>
-        </div>
-        <div class="app-content">
-          <h3 class="app-title">Spotify Premium</h3>
-          <div class="app-developer">Spotify AB</div>
-          <p class="app-description">Nghe nhạc không quảng cáo, tải nhạc để nghe offline và chất lượng âm thanh cao.</p>
-          <div class="app-meta">
-            <div class="app-rating">
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star-half-alt"></i>
-              <span>(4.7)</span>
-            </div>
-            <button class="download-btn">
-              <i class="fas fa-download"></i> Tải
-            </button>
-          </div>
-        </div>
-      </div>
-      
-      <!-- App Card 2 -->
-      <div class="app-card fade-in">
-        <div class="app-image">
-          <i class="fas fa-video"></i>
-        </div>
-        <div class="app-content">
-          <h3 class="app-title">YouTube Premium</h3>
-          <div class="app-developer">Google LLC</div>
-          <p class="app-description">Xem video không quảng cáo, phát nền và tải video để xem offline.</p>
-          <div class="app-meta">
-            <div class="app-rating">
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <span>(4.9)</span>
-            </div>
-            <button class="download-btn">
-              <i class="fas fa-download"></i> Tải
-            </button>
-          </div>
-        </div>
-      </div>
-      
-      <!-- App Card 3 -->
-      <div class="app-card fade-in">
-        <div class="app-image">
-          <i class="fas fa-gamepad"></i>
-        </div>
-        <div class="app-content">
-          <h3 class="app-title">Minecraft Premium</h3>
-          <div class="app-developer">Mojang</div>
-          <p class="app-description">Trò chơi thế giới mở sáng tạo với chế độ sinh tồn và phiêu lưu đỉnh cao.</p>
-          <div class="app-meta">
-            <div class="app-rating">
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="far fa-star"></i>
-              <span>(4.3)</span>
-            </div>
-            <button class="download-btn">
-              <i class="fas fa-download"></i> Tải
-            </button>
-          </div>
-        </div>
-      </div>
-      
-      <!-- App Card 4 -->
-      <div class="app-card fade-in">
-        <div class="app-image">
-          <i class="fas fa-photo-video"></i>
-        </div>
-        <div class="app-content">
-          <h3 class="app-title">Procreate Pocket</h3>
-          <div class="app-developer">Savage Interactive</div>
-          <p class="app-description">Ứng dụng vẽ chuyên nghiệp dành cho iPhone với bộ công cụ đầy đủ.</p>
-          <div class="app-meta">
-            <div class="app-rating">
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star-half-alt"></i>
-              <span>(4.6)</span>
-            </div>
-            <button class="download-btn">
-              <i class="fas fa-download"></i> Tải
-            </button>
-          </div>
-        </div>
-      </div>
+    <div class="grid" id="apps-grid">
+      <!-- App Cards will be generated by JavaScript -->
     </div>
   </div>
 
@@ -712,9 +697,10 @@
       </div>
       <h2>Chia sẻ ứng dụng của bạn</h2>
       <p>Upload file IPA của bạn để chia sẻ với cộng đồng người dùng iOS. Chúng tôi hỗ trợ file có kích thước tối đa 2GB.</p>
-      <button class="upload-btn">
+      <button class="upload-btn" id="upload-btn">
         <i class="fas fa-upload"></i> Upload IPA
       </button>
+      <div id="upload-progress" class="progress-bar" style="margin-top: 15px;"></div>
     </div>
   </section>
 
@@ -765,6 +751,14 @@
       document.body.classList.toggle('light-mode');
       const isLightMode = document.body.classList.contains('light-mode');
       localStorage.setItem('lightMode', isLightMode);
+      updateToggleIcon(isLightMode);
+    };
+    
+    const updateToggleIcon = (isLightMode) => {
+      const toggleBtn = document.querySelector('.toggle-btn span');
+      if (toggleBtn) {
+        toggleBtn.style.transform = isLightMode ? 'translateX(24px)' : 'translateX(0)';
+      }
     };
     
     // Initialize theme
@@ -776,11 +770,179 @@
       if (savedTheme === 'true' || (!savedTheme && prefersLight)) {
         document.body.classList.add('light-mode');
       }
+      updateToggleIcon(document.body.classList.contains('light-mode'));
     };
     
     // Setup event listeners
     document.querySelector('.toggle-btn').addEventListener('click', toggleTheme);
     document.addEventListener('DOMContentLoaded', initTheme);
+    
+    // Sample apps data
+    const apps = [
+      {
+        id: 1,
+        name: "Spotify Premium",
+        developer: "Spotify AB",
+        icon: "fab fa-spotify",
+        description: "Nghe nhạc không quảng cáo, tải nhạc để nghe offline và chất lượng âm thanh cao.",
+        rating: 4.7,
+        category: "Tiện ích"
+      },
+      {
+        id: 2,
+        name: "YouTube Premium",
+        developer: "Google LLC",
+        icon: "fas fa-video",
+        description: "Xem video không quảng cáo, phát nền và tải video để xem offline.",
+        rating: 4.9,
+        category: "Tiện ích"
+      },
+      {
+        id: 3,
+        name: "Minecraft Premium",
+        developer: "Mojang",
+        icon: "fas fa-gamepad",
+        description: "Trò chơi thế giới mở sáng tạo với chế độ sinh tồn và phiêu lưu đỉnh cao.",
+        rating: 4.3,
+        category: "Trò chơi"
+      },
+      {
+        id: 4,
+        name: "Procreate Pocket",
+        developer: "Savage Interactive",
+        icon: "fas fa-photo-video",
+        description: "Ứng dụng vẽ chuyên nghiệp dành cho iPhone với bộ công cụ đầy đủ.",
+        rating: 4.6,
+        category: "Công cụ"
+      },
+      {
+        id: 5,
+        name: "Notion Pro",
+        developer: "Notion Labs",
+        icon: "fas fa-sticky-note",
+        description: "Công cụ quản lý công việc và ghi chú toàn diện cho cá nhân và nhóm.",
+        rating: 4.8,
+        category: "Công cụ"
+      },
+      {
+        id: 6,
+        name: "Duolingo Plus",
+        developer: "Duolingo Inc",
+        icon: "fas fa-language",
+        description: "Học ngôn ngữ miễn phí với các bài học vui nhộn và không quảng cáo.",
+        rating: 4.5,
+        category: "Giáo dục"
+      }
+    ];
+    
+    // Generate apps grid
+    function generateAppsGrid(appsList) {
+      const grid = document.getElementById('apps-grid');
+      grid.innerHTML = '';
+      
+      appsList.forEach(app => {
+        const stars = generateStars(app.rating);
+        const appCard = document.createElement('div');
+        appCard.className = 'app-card fade-in';
+        appCard.innerHTML = `
+          <div class="app-image">
+            <i class="${app.icon}"></i>
+          </div>
+          <div class="app-content">
+            <h3 class="app-title">${app.name}</h3>
+            <div class="app-developer">${app.developer}</div>
+            <p class="app-description">${app.description}</p>
+            <div class="app-meta">
+              <div class="app-rating">
+                ${stars}
+                <span>(${app.rating})</span>
+              </div>
+              <button class="download-btn" data-id="${app.id}">
+                <i class="fas fa-download"></i> Tải
+              </button>
+            </div>
+          </div>
+        `;
+        grid.appendChild(appCard);
+      });
+      
+      // Add event listeners to download buttons
+      document.querySelectorAll('.download-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+          const appId = this.getAttribute('data-id');
+          const app = apps.find(a => a.id == appId);
+          downloadApp(app);
+        });
+      });
+    }
+    
+    // Generate star rating HTML
+    function generateStars(rating) {
+      let starsHTML = '';
+      const fullStars = Math.floor(rating);
+      const hasHalfStar = rating % 1 >= 0.5;
+      
+      for (let i = 0; i < fullStars; i++) {
+        starsHTML += '<i class="fas fa-star"></i>';
+      }
+      
+      if (hasHalfStar) {
+        starsHTML += '<i class="fas fa-star-half-alt"></i>';
+      }
+      
+      const emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0);
+      for (let i = 0; i < emptyStars; i++) {
+        starsHTML += '<i class="far fa-star"></i>';
+      }
+      
+      return starsHTML;
+    }
+    
+    // Download app function
+    function downloadApp(app) {
+      const btn = document.querySelector(`.download-btn[data-id="${app.id}"]`);
+      const originalHTML = btn.innerHTML;
+      
+      // Show download progress
+      btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Đang tải...';
+      btn.disabled = true;
+      
+      // Simulate download progress
+      const progressBar = document.createElement('div');
+      progressBar.className = 'progress-bar';
+      btn.parentElement.parentElement.appendChild(progressBar);
+      
+      let progress = 0;
+      const interval = setInterval(() => {
+        progress += Math.random() * 10;
+        progressBar.style.width = `${Math.min(progress, 100)}%`;
+        
+        if (progress >= 100) {
+          clearInterval(interval);
+          setTimeout(() => {
+            btn.innerHTML = originalHTML;
+            btn.disabled = false;
+            progressBar.remove();
+            
+            // Show download complete message
+            const appName = app.name;
+            alert(`Tải xuống "${appName}" thành công!`);
+          }, 500);
+        }
+      }, 200);
+    }
+    
+    // Search functionality
+    document.getElementById('search-input').addEventListener('input', function(e) {
+      const searchTerm = e.target.value.toLowerCase();
+      const filteredApps = apps.filter(app => 
+        app.name.toLowerCase().includes(searchTerm) || 
+        app.developer.toLowerCase().includes(searchTerm) ||
+        app.description.toLowerCase().includes(searchTerm) ||
+        app.category.toLowerCase().includes(searchTerm)
+      );
+      generateAppsGrid(filteredApps);
+    });
     
     // Filter buttons functionality
     document.querySelectorAll('.filter-btn').forEach(button => {
@@ -793,38 +955,90 @@
         // Add active class to clicked button
         this.classList.add('active');
         
-        // Filter functionality would go here
-        console.log('Filter by:', this.textContent);
+        // Filter apps
+        const category = this.textContent;
+        if (category === 'Tất cả') {
+          generateAppsGrid(apps);
+        } else {
+          const filteredApps = apps.filter(app => app.category === category);
+          generateAppsGrid(filteredApps);
+        }
       });
     });
     
-    // Download buttons functionality
-    document.querySelectorAll('.download-btn').forEach(button => {
-      button.addEventListener('click', function() {
-        const appCard = this.closest('.app-card');
-        const appName = appCard.querySelector('.app-title').textContent;
+    // Upload functionality
+    document.getElementById('upload-btn').addEventListener('click', function() {
+      const uploadBtn = this;
+      const originalHTML = uploadBtn.innerHTML;
+      const progressBar = document.getElementById('upload-progress');
+      
+      uploadBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Đang xử lý...';
+      uploadBtn.disabled = true;
+      progressBar.style.width = '0';
+      
+      let progress = 0;
+      const interval = setInterval(() => {
+        progress += Math.random() * 15;
+        progressBar.style.width = `${Math.min(progress, 100)}%`;
         
-        // Show download confirmation
-        alert(`Bắt đầu tải xuống: ${appName}`);
-        
-        // Simulate download progress
-        const originalText = this.innerHTML;
-        this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Đang tải...';
-        this.disabled = true;
-        
-        setTimeout(() => {
-          this.innerHTML = originalText;
-          this.disabled = false;
-          alert(`Tải xuống ${appName} thành công!`);
-        }, 2000);
-      });
+        if (progress >= 100) {
+          clearInterval(interval);
+          setTimeout(() => {
+            uploadBtn.innerHTML = originalHTML;
+            uploadBtn.disabled = false;
+            alert('Upload IPA thành công! Ứng dụng của bạn đang chờ kiểm duyệt.');
+          }, 500);
+        }
+      }, 300);
     });
     
-    // Upload button functionality
-    document.querySelector('.upload-btn').addEventListener('click', function() {
-      alert('Mở trình đơn upload IPA...');
-      // In a real implementation, this would open a file upload dialog
-    });
+    // Initialize apps grid
+    generateAppsGrid(apps);
+    
+    // Add iOS specific features
+    function addIOSFeatures() {
+      // Add touch effect for buttons
+      const buttons = document.querySelectorAll('button, .cta-button');
+      buttons.forEach(btn => {
+        btn.addEventListener('touchstart', () => {
+          btn.classList.add('active');
+        });
+        
+        btn.addEventListener('touchend', () => {
+          setTimeout(() => {
+            btn.classList.remove('active');
+          }, 150);
+        });
+      });
+      
+      // Prevent zoom on input focus
+      const inputs = document.querySelectorAll('input');
+      inputs.forEach(input => {
+        input.addEventListener('focus', () => {
+          document.body.style.zoom = "100%";
+        });
+      });
+      
+      // Add iOS status bar padding
+      document.documentElement.style.setProperty('--safe-area-top', 'env(safe-area-inset-top)');
+      document.documentElement.style.setProperty('--safe-area-bottom', 'env(safe-area-inset-bottom)');
+    }
+    
+    // Run iOS specific features
+    if (navigator.userAgent.match(/iPhone|iPad|iPod/i)) {
+      addIOSFeatures();
+    }
+    
+    // GitHub Pages specific - Service Worker for offline support
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js').then(registration => {
+          console.log('ServiceWorker registration successful with scope: ', registration.scope);
+        }).catch(err => {
+          console.log('ServiceWorker registration failed: ', err);
+        });
+      });
+    }
   </script>
 </body>
 </html>
