@@ -7,7 +7,6 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <title>Kho App - Nền tảng chia sẻ IPA iOS</title>
   <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📱</text></svg>">
-  <link rel="manifest" href="data:application/json;base64,eyJuYW1lIjoiS2hvIEFwcCIsInNob3J0X25hbWUiOiJLaG9BcHAiLCJzdGFydF91cmwiOiIvIiwiaWNvbnMiOlt7InNyYyI6ImRhdGE6aW1hZ2Uvc3ZnK3htbDtiYXNlNjQsUEhOMlp5QjRiV3h1Y3owaWFIUjBjRG92TDNkM2R5NTNNeTV2Y21jdk1qQXdNQzl6ZG1jaUlIZHBaSFJvUFNJeElpQm9aV2xuYUhROUlqQWlJSEJ2YVcxbGN5MXBaR1Z1ZEM5d1lXTnJkSFZ5WlQwaWFIUjBjRG92TDNkM2R5NXBiaTl6ZG1jaVBqeGpiMjVtYVdkemRHOXlJSE4wZVd4bFBTSm9kSFJ3T2k4dmQzZDNMbmN6TG05eVp5OHlNREF3TDNOMlp5SStQSE4wY205clpUb2dNQ0F3SURFZ01qYzJNQ0lnYzNSeVpYUmphRDB4TlNJZ1kyeGhjM005SW1oMGRIQTZMeTkzZDNjdWR6TXViM0puTHpJd01EQXZjM1puSWo0OGNHRjBhQ0JtYVd4c1BTSjFjbXdvSTJ4cGJtVmhja2R5WVdScFpXNTBORE0wSWlCamJHRnpjejBpYzNSeWFXNW5JaTgrUEhOMGIzQWdjM1I1YkdVOUluTjBZWFJsSWlCbWFXeHNQU0oxY213b0kyeHBibVZoY2tkeVlXUnBaVzUwTkRNMElpOCtQSE4wYjNBZ2MzUjViR1U5SW5OMFlYUmxJaUJtYVd4c1BTSjFjbXdvSTJ4cGJtVmhja2R5WVdScFpXNTBORE0wSWk4K1BDOXpkbWMrIn1dfQ==">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap">
   <style>
@@ -22,7 +21,6 @@
       --safe-area-bottom: env(safe-area-inset-bottom, 0px);
     }
 
-    /* Light Mode Variables */
     .light-mode {
       --bg-color: #f5f7ff;
       --text-color: #333;
@@ -48,14 +46,12 @@
       padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
     }
 
-    /* Safari specific fixes */
     @supports (-webkit-touch-callout: none) {
       body {
         min-height: -webkit-fill-available;
       }
     }
 
-    /* Header Styles */
     header {
       background: linear-gradient(90deg, var(--accent-color), var(--primary-color));
       padding: calc(1rem + var(--safe-area-top)) 1.5rem 1rem;
@@ -85,7 +81,6 @@
       font-size: 1.5rem;
     }
 
-    /* Navigation */
     nav {
       display: flex;
       align-items: center;
@@ -152,7 +147,6 @@
       color: #333;
     }
 
-    /* Toggle Button */
     .toggle-btn {
       background: rgba(255, 255, 255, 0.2);
       border: none;
@@ -184,7 +178,6 @@
       justify-content: flex-end;
     }
 
-    /* Hero Section */
     .hero {
       padding: 3rem 1.5rem;
       text-align: center;
@@ -239,7 +232,6 @@
       box-shadow: 0 6px 20px rgba(0, 212, 255, 0.4);
     }
 
-    /* App Grid */
     .container {
       max-width: 1400px;
       margin: 0 auto;
@@ -295,7 +287,7 @@
 
     .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
       gap: 1.5rem;
     }
 
@@ -319,17 +311,36 @@
     }
 
     .app-image {
-      height: 160px;
-      background: linear-gradient(45deg, #ff3cac, #00d4ff);
+      height: 180px;
       display: flex;
       align-items: center;
       justify-content: center;
+      position: relative;
+      overflow: hidden;
     }
 
-    .app-image i {
-      font-size: 3.5rem;
+    .app-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .app-card:hover .app-image img {
+      transform: scale(1.05);
+    }
+
+    .app-badge {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: var(--accent-color);
       color: white;
-      opacity: 0.8;
+      padding: 0.3rem 0.8rem;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      z-index: 2;
     }
 
     .app-content {
@@ -340,21 +351,50 @@
     }
 
     .app-title {
-      font-size: 1.2rem;
+      font-size: 1.25rem;
       margin-bottom: 0.4rem;
-      font-weight: 600;
+      font-weight: 700;
     }
 
     .app-developer {
       color: var(--primary-color);
       font-size: 0.85rem;
       margin-bottom: 0.6rem;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .app-meta-info {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 0.8rem;
+      font-size: 0.85rem;
+    }
+
+    .app-version {
+      background: rgba(0, 212, 255, 0.15);
+      color: var(--primary-color);
+      padding: 0.2rem 0.6rem;
+      border-radius: 10px;
+      font-weight: 500;
+    }
+
+    .app-updated {
+      color: rgba(255, 255, 255, 0.7);
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .light-mode .app-updated {
+      color: #666;
     }
 
     .app-description {
       color: rgba(255, 255, 255, 0.7);
       font-size: 0.9rem;
-      margin-bottom: 1rem;
+      margin-bottom: 1.2rem;
       flex-grow: 1;
       line-height: 1.5;
     }
@@ -390,7 +430,7 @@
       background: var(--primary-color);
       color: white;
       border: none;
-      padding: 0.5rem 1rem;
+      padding: 0.6rem 1.2rem;
       border-radius: 20px;
       cursor: pointer;
       font-weight: 600;
@@ -406,7 +446,6 @@
       background: #00a0c0;
     }
 
-    /* Upload Section */
     .upload-section {
       background: linear-gradient(135deg, #1e1e2e 0%, #2c2c48 100%);
       padding: 3rem 1.5rem;
@@ -458,7 +497,6 @@
       box-shadow: 0 5px 20px rgba(255, 60, 172, 0.4);
     }
 
-    /* Footer */
     footer {
       background: #141421;
       padding: 2.5rem 1.5rem 1.5rem;
@@ -549,7 +587,6 @@
       border-top: 1px solid rgba(0, 0, 0, 0.1);
     }
 
-    /* iOS Safari specific styles */
     @supports (-webkit-overflow-scrolling: touch) {
       .app-card, .download-btn, .upload-btn, .cta-button {
         transform: translateZ(0);
@@ -560,7 +597,6 @@
       }
     }
 
-    /* Responsive Design */
     @media (max-width: 900px) {
       header {
         flex-wrap: wrap;
@@ -610,7 +646,6 @@
       }
     }
 
-    /* Animations */
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(20px); }
       to { opacity: 1; transform: translateY(0); }
@@ -630,13 +665,30 @@
       animation: pulse 2s infinite;
     }
     
-    /* Download progress */
     .progress-bar {
       height: 4px;
       background: var(--primary-color);
       width: 0;
       border-radius: 2px;
       transition: width 0.5s ease;
+    }
+    
+    .notification {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: var(--primary-color);
+      color: white;
+      padding: 1rem 1.5rem;
+      border-radius: 12px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      z-index: 1000;
+      transform: translateX(200%);
+      transition: transform 0.4s ease;
+    }
+    
+    .notification.show {
+      transform: translateX(0);
     }
   </style>
 </head>
@@ -671,18 +723,18 @@
     </a>
   </section>
 
-  <div class="container">
+  <div class="container" id="apps">
     <h2 class="section-title">
       <i class="fas fa-rocket"></i> Ứng dụng nổi bật
     </h2>
     
     <div class="filters">
-      <button class="filter-btn active">Tất cả</button>
-      <button class="filter-btn">Trò chơi</button>
-      <button class="filter-btn">Tiện ích</button>
-      <button class="filter-btn">Giáo dục</button>
-      <button class="filter-btn">Mạng xã hội</button>
-      <button class="filter-btn">Công cụ</button>
+      <button class="filter-btn active" data-category="all">Tất cả</button>
+      <button class="filter-btn" data-category="Trò chơi">Trò chơi</button>
+      <button class="filter-btn" data-category="Tiện ích">Tiện ích</button>
+      <button class="filter-btn" data-category="Giáo dục">Giáo dục</button>
+      <button class="filter-btn" data-category="Mạng xã hội">Mạng xã hội</button>
+      <button class="filter-btn" data-category="Công cụ">Công cụ</button>
     </div>
     
     <div class="grid" id="apps-grid">
@@ -720,11 +772,11 @@
       <div class="footer-column">
         <h3>Danh mục</h3>
         <ul class="footer-links">
-          <li><a href="#">Trò chơi</a></li>
-          <li><a href="#">Tiện ích</a></li>
-          <li><a href="#">Giáo dục</a></li>
-          <li><a href="#">Mạng xã hội</a></li>
-          <li><a href="#">Công cụ làm việc</a></li>
+          <li><a href="#" data-category="Trò chơi">Trò chơi</a></li>
+          <li><a href="#" data-category="Tiện ích">Tiện ích</a></li>
+          <li><a href="#" data-category="Giáo dục">Giáo dục</a></li>
+          <li><a href="#" data-category="Mạng xã hội">Mạng xã hội</a></li>
+          <li><a href="#" data-category="Công cụ">Công cụ</a></li>
         </ul>
       </div>
       
@@ -744,6 +796,10 @@
       &copy; 2025 Kho App. All rights reserved.
     </div>
   </footer>
+
+  <div class="notification" id="notification">
+    <span id="notification-message"></span>
+  </div>
 
   <script>
     // Dark/Light Mode Toggle
@@ -766,7 +822,6 @@
       const savedTheme = localStorage.getItem('lightMode');
       const prefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
       
-      // Use saved theme if exists, otherwise use system preference
       if (savedTheme === 'true' || (!savedTheme && prefersLight)) {
         document.body.classList.add('light-mode');
       }
@@ -777,63 +832,112 @@
     document.querySelector('.toggle-btn').addEventListener('click', toggleTheme);
     document.addEventListener('DOMContentLoaded', initTheme);
     
-    // Sample apps data
+    // Sample apps data with images, versions, and dates
     const apps = [
       {
         id: 1,
         name: "Spotify Premium",
         developer: "Spotify AB",
-        icon: "fab fa-spotify",
+        image: "https://images.unsplash.com/photo-1611339555312-e607c8352fd7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
         description: "Nghe nhạc không quảng cáo, tải nhạc để nghe offline và chất lượng âm thanh cao.",
         rating: 4.7,
-        category: "Tiện ích"
+        category: "Tiện ích",
+        downloadUrl: "https://example.com/download/spotify.ipa",
+        version: "8.8.20",
+        updated: "2025-05-15"
       },
       {
         id: 2,
         name: "YouTube Premium",
         developer: "Google LLC",
-        icon: "fas fa-video",
+        image: "https://images.unsplash.com/photo-1611162617474-5b21e879e113?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
         description: "Xem video không quảng cáo, phát nền và tải video để xem offline.",
         rating: 4.9,
-        category: "Tiện ích"
+        category: "Tiện ích",
+        downloadUrl: "https://transfer.it/t/52AdiYlDiT7B",
+        version: "18.32.4",
+        updated: "2025-06-10"
       },
       {
         id: 3,
         name: "Minecraft Premium",
         developer: "Mojang",
-        icon: "fas fa-gamepad",
+        image: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
         description: "Trò chơi thế giới mở sáng tạo với chế độ sinh tồn và phiêu lưu đỉnh cao.",
         rating: 4.3,
-        category: "Trò chơi"
+        category: "Trò chơi",
+        downloadUrl: "https://example.com/download/minecraft.ipa",
+        version: "1.20.1",
+        updated: "2025-05-28"
       },
       {
         id: 4,
         name: "Procreate Pocket",
         developer: "Savage Interactive",
-        icon: "fas fa-photo-video",
+        image: "https://images.unsplash.com/photo-1542751110-97427bbecf20?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
         description: "Ứng dụng vẽ chuyên nghiệp dành cho iPhone với bộ công cụ đầy đủ.",
         rating: 4.6,
-        category: "Công cụ"
+        category: "Công cụ",
+        downloadUrl: "https://example.com/download/procreate.ipa",
+        version: "5.3.2",
+        updated: "2025-04-22"
       },
       {
         id: 5,
         name: "Notion Pro",
         developer: "Notion Labs",
-        icon: "fas fa-sticky-note",
+        image: "https://images.unsplash.com/photo-1558655146-d09347e92766?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
         description: "Công cụ quản lý công việc và ghi chú toàn diện cho cá nhân và nhóm.",
         rating: 4.8,
-        category: "Công cụ"
+        category: "Công cụ",
+        downloadUrl: "https://example.com/download/notion.ipa",
+        version: "3.2.0",
+        updated: "2025-06-05"
       },
       {
         id: 6,
         name: "Duolingo Plus",
         developer: "Duolingo Inc",
-        icon: "fas fa-language",
+        image: "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
         description: "Học ngôn ngữ miễn phí với các bài học vui nhộn và không quảng cáo.",
         rating: 4.5,
-        category: "Giáo dục"
+        category: "Giáo dục",
+        downloadUrl: "https://example.com/download/duolingo.ipa",
+        version: "7.54.0",
+        updated: "2025-05-18"
       }
     ];
+    
+    // Format date for display
+    function formatDate(dateString) {
+      const date = new Date(dateString);
+      const day = date.getDate().toString().padStart(2, '0');
+      const month = (date.getMonth() + 1).toString().padStart(2, '0');
+      const year = date.getFullYear();
+      return `${day}/${month}/${year}`;
+    }
+    
+    // Generate stars for rating
+    function generateStars(rating) {
+      let starsHTML = '';
+      const fullStars = Math.floor(rating);
+      const hasHalfStar = rating % 1 >= 0.5;
+      
+      for (let i = 0; i < fullStars; i++) {
+        starsHTML += '<i class="fas fa-star"></i>';
+      }
+      
+      if (hasHalfStar) {
+        starsHTML += '<i class="fas fa-star-half-alt"></i>';
+      }
+      
+      const emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0);
+      for (let i = 0; i < emptyStars; i++) {
+        starsHTML += '<i class="far fa-star"></i>';
+      }
+      
+      return starsHTML;
+    }
     
     // Generate apps grid
     function generateAppsGrid(appsList) {
@@ -846,11 +950,24 @@
         appCard.className = 'app-card fade-in';
         appCard.innerHTML = `
           <div class="app-image">
-            <i class="${app.icon}"></i>
+            <img src="${app.image}" alt="${app.name}">
+            <div class="app-badge">${app.category}</div>
           </div>
           <div class="app-content">
             <h3 class="app-title">${app.name}</h3>
-            <div class="app-developer">${app.developer}</div>
+            <div class="app-developer">
+              <i class="fas fa-user"></i> ${app.developer}
+            </div>
+            
+            <div class="app-meta-info">
+              <div class="app-version">
+                <i class="fas fa-code-branch"></i> ${app.version}
+              </div>
+              <div class="app-updated">
+                <i class="fas fa-calendar-alt"></i> ${formatDate(app.updated)}
+              </div>
+            </div>
+            
             <p class="app-description">${app.description}</p>
             <div class="app-meta">
               <div class="app-rating">
@@ -874,28 +991,6 @@
           downloadApp(app);
         });
       });
-    }
-    
-    // Generate star rating HTML
-    function generateStars(rating) {
-      let starsHTML = '';
-      const fullStars = Math.floor(rating);
-      const hasHalfStar = rating % 1 >= 0.5;
-      
-      for (let i = 0; i < fullStars; i++) {
-        starsHTML += '<i class="fas fa-star"></i>';
-      }
-      
-      if (hasHalfStar) {
-        starsHTML += '<i class="fas fa-star-half-alt"></i>';
-      }
-      
-      const emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0);
-      for (let i = 0; i < emptyStars; i++) {
-        starsHTML += '<i class="far fa-star"></i>';
-      }
-      
-      return starsHTML;
     }
     
     // Download app function
@@ -924,12 +1019,24 @@
             btn.disabled = false;
             progressBar.remove();
             
-            // Show download complete message
-            const appName = app.name;
-            alert(`Tải xuống "${appName}" thành công!`);
+            // Redirect to actual download URL
+            window.location.href = app.downloadUrl;
           }, 500);
         }
       }, 200);
+    }
+    
+    // Show notification
+    function showNotification(message) {
+      const notification = document.getElementById('notification');
+      const messageEl = document.getElementById('notification-message');
+      
+      messageEl.textContent = message;
+      notification.classList.add('show');
+      
+      setTimeout(() => {
+        notification.classList.remove('show');
+      }, 3000);
     }
     
     // Search functionality
@@ -956,13 +1063,42 @@
         this.classList.add('active');
         
         // Filter apps
-        const category = this.textContent;
-        if (category === 'Tất cả') {
+        const category = this.getAttribute('data-category');
+        if (category === 'all') {
           generateAppsGrid(apps);
         } else {
           const filteredApps = apps.filter(app => app.category === category);
           generateAppsGrid(filteredApps);
         }
+      });
+    });
+    
+    // Footer category links
+    document.querySelectorAll('.footer-links a[data-category]').forEach(link => {
+      link.addEventListener('click', function(e) {
+        e.preventDefault();
+        const category = this.getAttribute('data-category');
+        
+        // Update active filter
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+          btn.classList.remove('active');
+          if (btn.getAttribute('data-category') === category) {
+            btn.classList.add('active');
+          } else if (category === 'all') {
+            document.querySelector('.filter-btn[data-category="all"]').classList.add('active');
+          }
+        });
+        
+        // Filter apps
+        if (category === 'all') {
+          generateAppsGrid(apps);
+        } else {
+          const filteredApps = apps.filter(app => app.category === category);
+          generateAppsGrid(filteredApps);
+        }
+        
+        // Scroll to apps section
+        document.getElementById('apps').scrollIntoView({ behavior: 'smooth' });
       });
     });
     
@@ -986,7 +1122,7 @@
           setTimeout(() => {
             uploadBtn.innerHTML = originalHTML;
             uploadBtn.disabled = false;
-            alert('Upload IPA thành công! Ứng dụng của bạn đang chờ kiểm duyệt.');
+            showNotification('Upload IPA thành công! Ứng dụng của bạn đang chờ kiểm duyệt.');
           }, 500);
         }
       }, 300);
@@ -1012,7 +1148,7 @@
       });
       
       // Prevent zoom on input focus
-      const inputs = document.querySelectorAll('input');
+      const inputs = document.querySelectorAll('input, textarea');
       inputs.forEach(input => {
         input.addEventListener('focus', () => {
           document.body.style.zoom = "100%";
@@ -1027,17 +1163,6 @@
     // Run iOS specific features
     if (navigator.userAgent.match(/iPhone|iPad|iPod/i)) {
       addIOSFeatures();
-    }
-    
-    // GitHub Pages specific - Service Worker for offline support
-    if ('serviceWorker' in navigator) {
-      window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/sw.js').then(registration => {
-          console.log('ServiceWorker registration successful with scope: ', registration.scope);
-        }).catch(err => {
-          console.log('ServiceWorker registration failed: ', err);
-        });
-      });
     }
   </script>
 </body>
